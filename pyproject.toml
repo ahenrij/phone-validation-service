@@ -1,11 +1,14 @@
 [tool.poetry]
 name = "phone-validation-service"
 version = "0.1.0"
-description = ""
+description = "Phone validation microservice"
 authors = ["Henri Aïdasso <ahenrij@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+pydantic = {extras = ["dotenv"], version = "^1.9.2"}
+prospector = {extras = ["with_everything"], version = "^1.7.7"}
+pre-commit = "^2.20.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
