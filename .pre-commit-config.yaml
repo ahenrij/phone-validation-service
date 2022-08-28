@@ -5,9 +5,9 @@ repos:
       - id: check-yaml
       - id: end-of-file-fixer
       - id: trailing-whitespace
--   repo: local
-    hooks:
-    -   id: black
+- repo: local
+  hooks:
+      - id: black
         name: black
         description: 'Black code formatter'
         entry: black
@@ -15,7 +15,7 @@ repos:
         files: ^(app/.*|tests/.*|.)
         types: [python]
         stages: [commit]
-    -   id: prospector
+      - id: prospector
         name: Prospector
         description: 'Prospector: https://github.com/landscapeio/prospector'
         entry: prospector
