@@ -8,7 +8,6 @@ ignore-paths:
   - build
   - dist
   - scripts
-  - alembic
 
 mypy:
   run: true
