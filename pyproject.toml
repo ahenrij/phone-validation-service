@@ -7,6 +7,8 @@ authors = ["Henri Aïdasso <ahenrij@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.10"
 pydantic = {extras = ["dotenv"], version = "^1.9.2"}
+fastapi = "^0.81.0"
+uvicorn = {extras = ["standard"], version = "^0.18.3"}
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.2"
