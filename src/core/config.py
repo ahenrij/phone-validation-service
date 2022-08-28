@@ -15,6 +15,7 @@ class Settings(BaseSettings):
     """
 
     PROJECT_NAME: str
+    API_V1_STR: str = "/v1"
 
     class Config:
         """Settings configs."""
