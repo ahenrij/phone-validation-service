@@ -1,0 +1,3 @@
+skips: ['B101', 'B403', 'B301'] # assert used, security for pickle
+exclude_dirs:
+  - tests

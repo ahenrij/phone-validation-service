@@ -1,0 +1,61 @@
+strictness: medium
+test-warnings: true
+doc-warnings: true
+autodetect: false
+max-line-length: 150
+
+ignore-paths:
+  - build
+  - dist
+  - scripts
+  - alembic
+
+mypy:
+  run: true
+  options:
+    ignore-missing-imports: true
+    follow-imports: skip
+
+bandit:
+  run: true
+  options:
+    config: .bandit.yml
+
+pep8:
+  full: true
+  disable:
+    - N803 # argument name should be lowercase
+    - N806 # variable in function should be lowercase
+    - N812 # lowercase imported as non lowercase
+    - E722 # bare except
+
+pyflakes:
+  run: true
+  disable:
+    - F841 # local variable is assigned but never used
+
+pylint:
+  run: true
+  disable:
+    - too-many-locals
+    - arguments-differ
+    - no-else-return
+    - inconsistent-return-statements
+    - too-many-arguments
+    - bare-except
+    - import-error
+    - redefined-builtin
+    - unsubscriptable-object
+    - old-octal-literal
+
+pep257:
+  run: true
+  disable:
+    - D203 # 1 blank line required before class docstring
+    - D212 # Multi-line docstring summary should start at the first line
+    - D213 # Multi-line docstring summary should start at the second line
+    - D205
+    - D415
+    - D413 # Missing blank line after last section
+    - D407 # Missing dashed underline after section
+    - D406 # Section name without :
