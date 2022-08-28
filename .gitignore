@@ -1,0 +1,9 @@
+__pycache__/
+.vscode
+*.idea
+.venv
+dist
+.data
+.mypy_cache
+.coverage
+.pytest_cache
