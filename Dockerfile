@@ -1,17 +1,20 @@
-FROM python:3.10.5-slim-buster as base
+FROM python:3.10-slim-buster as base
+
+LABEL maintainer="Henri Aïdasso <ahenrij@gmail.com>"
+LABEL name="darkpearl/phone-validation-service"
+LABEL version="0.1.0"
+
+EXPOSE 8000
 
 WORKDIR /app
 
 # Install Poetry
 RUN pip3 install poetry
 
-COPY ./pyproject.toml ./poetry.lock ./scripts/poetry-install.sh /app/
-
-ENV PATH="/root/.local/bin:$PATH"
+COPY ./pyproject.toml ./poetry.lock /app/
 
 # Install dependencies
-RUN poetry config virtualenvs.create false \
-  && poetry install --no-root --no-dev
+RUN poetry install --no-root --no-dev
 
 COPY . .
 
@@ -19,6 +22,9 @@ RUN chmod +x scripts/start.sh
 
 CMD ["scripts/start.sh"]
 
-# Testing Stage Image
+#################################
+# TESTING STAGE IMAGE
+#################################
 FROM base AS test
+
 RUN poetry install --no-root
