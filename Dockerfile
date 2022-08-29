@@ -9,7 +9,7 @@ EXPOSE 8000
 WORKDIR /app
 
 # Install Poetry
-RUN pip3 install poetry
+RUN pip install poetry
 
 COPY ./pyproject.toml ./poetry.lock /app/
 

@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  phone_validation_service:
+    image: darkpearl/phone-validation-service:latest
+    container_name: phone_validation_service
+    environment:
+      - DATABASE_TYPE=mongo
+      - DATABASE_URL=mongodb://root:password@mongodb:27017/phone_validation_service_db
+    ports:
+      - 80:8000
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest
+    container_name: phone_validation_service_mongo
+    ports:
+      - 27017:27017
+    env_file:
+      - .env
+    volumes:
+      - phone-validation-service-data:/data/db
+      - ./scripts/mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh
+
+volumes:
+  phone-validation-service-data:
