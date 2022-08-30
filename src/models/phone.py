@@ -5,7 +5,7 @@ from typing import Optional
 from bson import ObjectId
 from pydantic import Field
 
-from src.db.base import Base
+from src.db import Base
 
 
 class Phone(Base):
