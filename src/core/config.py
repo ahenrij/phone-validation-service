@@ -16,6 +16,8 @@ class Settings(BaseSettings):
 
     PROJECT_NAME: str
     API_V1_STR: str = "/v1"
+    DATABASE_TYPE: str
+    DATABASE_URL: str
 
     class Config:
         """Settings configs."""
