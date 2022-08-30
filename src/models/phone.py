@@ -3,15 +3,14 @@
 from datetime import datetime
 from typing import Optional
 from bson import ObjectId
-from pydantic import BaseModel, Field
+from pydantic import Field
 
-from src.models import PyObjectId
+from src.db.base import Base
 
 
-class Phone(BaseModel):
+class Phone(Base):
     """Phone model class."""
 
-    id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
     phone_number: str = Field(..., alias="phoneNumber", allow_mutation=False)
     confirmation_token: Optional[str] = Field(..., alias="confirmationToken")
     verified: bool = Field(...)
