@@ -1,3 +1,3 @@
 """Database utilities module."""
 
-from .base import Base  # noqa
+from src.db.base import Base  # noqa
