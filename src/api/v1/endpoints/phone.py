@@ -3,11 +3,17 @@
 from typing import Any
 from fastapi import APIRouter
 
+from src.models.phone import Phone
+from src import schemas
+
 
 router = APIRouter()
 
 
-@router.get("/hello", response_model=str)
-def get_phones() -> Any:
-    """Retrieve phone numbers list."""
-    return "Hello world !"
+@router.post("/phone", response_model=schemas.Phone)
+async def create(*, model_in: schemas.PhoneCreate) -> Any:
+    """Create a new phone entry."""
+    # Retrieve phone number
+    phone = await Phone.find_one(Phone.phone_number == model_in.phone_number)
+
+    return phone
