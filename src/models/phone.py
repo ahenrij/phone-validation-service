@@ -1,7 +1,6 @@
 """Phone model module."""
 
 from datetime import datetime
-from typing import Optional
 from beanie import Document
 from pydantic import Field
 
@@ -9,9 +8,9 @@ from pydantic import Field
 class Phone(Document):
     """Phone model class."""
 
-    phone_number: str = Field(alias="phoneNumber", allow_mutation=False)
-    confirmation_token: Optional[str] = Field(alias="confirmationToken")
-    verified: bool = Field(...)
+    phone_number: str = Field(..., alias="phoneNumber", allow_mutation=False)
+    confirmation_token: str = Field(..., alias="confirmationToken")
+    verified: bool = Field(default=False)
     created_at: datetime = Field(default=datetime.now(), alias="createdAt")
     updated_at: datetime = Field(default=datetime.now(), alias="updatedAt")
 
