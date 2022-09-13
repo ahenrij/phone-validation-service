@@ -1,15 +1,14 @@
 """Phone resource endpoints."""
 
-import math
-import random
 from typing import Any
 from fastapi import APIRouter, HTTPException
 
 from src.models.phone import Phone
-from src import schemas
+from src import schemas, utils
 
 
 router = APIRouter()
+OTP_CODE_LEN = 4
 
 
 @router.post("/phone", response_model=schemas.Phone)
@@ -22,10 +21,11 @@ async def create(*, model_in: schemas.PhoneCreate) -> Any:
         return HTTPException(status_code=409, detail="Phone number already used")
 
     if not phone:
-        confirmation_token = math.floor(1000 + random.randint(0, 9) * 9000)  # noqa
+        confirmation_token = utils.random_n_digits(OTP_CODE_LEN)
         phone = Phone(
             phoneNumber=model_in.phone_number,
             confirmatiomToken=confirmation_token,
         )
+        await Phone.insert_one(phone)
 
     return phone
