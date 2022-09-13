@@ -28,4 +28,6 @@ async def create(*, model_in: schemas.PhoneCreate) -> Any:
         )
         await Phone.insert_one(phone)
 
+    # send sms to phone number
+
     return phone
