@@ -18,6 +18,9 @@ class Settings(BaseSettings):
     API_V1_STR: str = "/v1"
     DATABASE_TYPE: str
     DATABASE_URL: str
+    TWILIO_ACCOUNT_SID: str
+    TWILIO_AUTH_TOKEN: str
+    TWILIO_SENDER: str
 
     class Config:
         """Settings configs."""
