@@ -16,10 +16,8 @@ router = APIRouter()
 @router.post("/phone", response_model=schemas.Phone)
 async def create(*, model_in: schemas.PhoneCreate) -> Any:
     """Create a new phone entry."""
-    # Get existing phone number record
+    # Check existing phone number record
     phone = await Phone.find_one(Phone.phone_number == model_in.phone_number)
-
-    # Return if phone is already verified
     if phone and phone.verified:
         return HTTPException(
             status_code=HTTPStatus.CONFLICT, detail="Phone number already used"
