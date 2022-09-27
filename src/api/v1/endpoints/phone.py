@@ -20,7 +20,7 @@ async def create(*, model_in: schemas.PhoneCreate) -> Any:
     phone = await Phone.find_one(Phone.phone_number == model_in.phone_number)
     if phone and phone.verified:
         return HTTPException(
-            status_code=HTTPStatus.CONFLICT, detail="Phone number already used"
+            status_code=HTTPStatus.CONFLICT, detail="Phone number already used."
         )
 
     # Save phone if not existed
@@ -41,5 +41,26 @@ async def create(*, model_in: schemas.PhoneCreate) -> Any:
         return HTTPException(
             status_code=HTTPStatus.SERVICE_UNAVAILABLE, detail="Sending SMS failed."
         )
+
+    return phone
+
+
+@router.post("/phone/validate", response_model=schemas.Phone)
+async def validate(*, model_in: schemas.PhoneValidate) -> Any:
+    """Validate saved phone number against the OTP code."""
+    # Get existing phone number record using otp code.
+    phone = await Phone.find_one(
+        Phone.phone_number == model_in.phone_number,
+        Phone.confirmation_token == model_in.otp_code,
+        Phone.verified is False,
+    )
+    if not phone:
+        return HTTPException(
+            status_code=HTTPStatus.BAD_REQUEST,
+            detail="No unvalidated phone number matched.",
+        )
+
+    # Update to verified
+    await phone.set({Phone.verified: True})
 
     return phone

@@ -53,3 +53,10 @@ class PhoneInDBBase(BaseModel):
 # Properties to return to client
 class Phone(PhoneInDBBase):
     """Phone Schema."""
+
+
+class PhoneValidate(BaseModel):
+    """Phone validation properties to receive."""
+
+    phone_number: str
+    otp_code: str
