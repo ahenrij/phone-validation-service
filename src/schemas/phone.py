@@ -35,7 +35,7 @@ class PhoneUpdate(PhoneBase):
     """Phone Update Schema."""
 
 
-class PhoneInDBBase(PhoneBase):
+class PhoneInDBBase(BaseModel):
     """Phone in database base schema."""
 
     id: str
