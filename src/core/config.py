@@ -16,6 +16,7 @@ class Settings(BaseSettings):
 
     PROJECT_NAME: str
     API_V1_STR: str = "/v1"
+    OTP_CODE_LEN: int = 4
     DATABASE_TYPE: str
     DATABASE_URL: str
     TWILIO_ACCOUNT_SID: str
